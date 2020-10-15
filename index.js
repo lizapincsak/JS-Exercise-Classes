@@ -148,7 +148,7 @@ demo(subject){
   return `Today we are learning about ${subject}`
 }
 grade(student, subject){
-  `${student.name} receives a perfect score on ${subject}`
+  `${this.name} receives a perfect score on ${subject}`
 }
 }
 
@@ -167,8 +167,22 @@ grade(student, subject){
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian{
+  constructor(childAttributes){
+    super(childAttributes);
+    this.previousBackground = childAttributes.previousBackground;
+    this.className = childAttributes.className;
+    this.favSubjects = childAttributes.favSubjects;
+  }
+listSubjects(){
+  return `Loving ${this.favSubjects}!`
+}
+PRAssignment(subject){
+   `${this.name} has submitted a PR for ${subject}`
+}
+sprintChallenge(subject){
+  `${this.name} has begun sprint challenge on ${subject}`
+}
 }
 
 /*
