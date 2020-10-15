@@ -41,9 +41,27 @@ class Airplane {
 */
 
 class Person {
-
+  constructor(attributes){
+    this.name = attributes.name; 
+    this.age = attributes.age;
+    this.stomach = [];
+  }
+  eat(edible){
+    if (this.stomach.length < 10){
+      this.stomach.push(edible)
+  }
 }
-
+  poop(){
+    this.stomach = [];
+  }
+  toString(){
+    return `${this.name}, ${this.age}`
+  }
+}
+const personOne = new Person({
+  name: "Harry Potter", 
+  age: 34.
+});
 /*
   TASK 2
     - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments.
@@ -59,7 +77,27 @@ class Person {
 */
 
 class Car {
-
+  constructor(attributes){
+    this.model = attributes.model;
+    this.milesPerGallon = attributes.milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons){
+    this.tank = this.tank + gallons;
+  }
+  drive(distance){
+    const range = this.tank * this.milesPerGallon;
+    this.odometer = this.odometer + distance;
+    this.tank = (range - distance)/this.milesPerGallon;
+    if (range >= distance){
+      this.odometer = this.odometer + distance;
+      this.tank = (range - distance)/this.milesPerGallon;
+    } else{
+      this.tank = 0;
+      console.log(`I ran out of fuel at ${this.odometer +(distance-(distance-range))}`)
+    }
+  }
 }
 
 /*
@@ -75,7 +113,14 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+  constructor(attributes){
+    this.name = attributes.name;
+    this.age = attributes.age;
+    this.location = attributes.location;
+  }
+speak(){
+  return `Hello my name is ${this.name}, I am from ${this.location}`
+}
 }
 
 /*
@@ -92,8 +137,19 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
-
+class Instructor extends Lambdasian{
+  constructor(childAttributes){
+    super(childAttributes);
+    this.specialty = childAttributes.specialty;
+    this.favLanguage = childAttributes.favLanguage;
+    this.catchPhrase = childAttributes.catchPhrase;
+  }
+demo(subject){
+  return `Today we are learning about ${subject}`
+}
+grade(student, subject){
+  `${student.name} receives a perfect score on ${subject}`
+}
 }
 
 /*
