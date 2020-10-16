@@ -41,9 +41,9 @@ class Airplane {
 */
 
 class Person {
-  constructor(attributes){
-    this.name = attributes.name; 
-    this.age = attributes.age;
+  constructor(name, age){
+    this.name = name; 
+    this.age = age;
     this.stomach = [];
   }
   eat(edible){
@@ -58,10 +58,7 @@ class Person {
     return `${this.name}, ${this.age}`
   }
 }
-const personOne = new Person({
-  name: "Harry Potter", 
-  age: 34.
-});
+
 /*
   TASK 2
     - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments.
@@ -77,9 +74,9 @@ const personOne = new Person({
 */
 
 class Car {
-  constructor(attributes){
-    this.model = attributes.model;
-    this.milesPerGallon = attributes.milesPerGallon;
+  constructor(model, milesPerGallon){
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
     this.tank = 0;
     this.odometer = 0;
   }
@@ -148,7 +145,7 @@ demo(subject){
   return `Today we are learning about ${subject}`
 }
 grade(student, subject){
-  `${this.name} receives a perfect score on ${subject}`
+  return `${student.name} receives a perfect score on ${subject}`
 }
 }
 
@@ -178,10 +175,10 @@ listSubjects(){
   return `Loving ${this.favSubjects}!`
 }
 PRAssignment(subject){
-   `${this.name} has submitted a PR for ${subject}`
+   return `${this.name} has submitted a PR for ${subject}`
 }
 sprintChallenge(subject){
-  `${this.name} has begun sprint challenge on ${subject}`
+  return `${this.name} has begun sprint challenge on ${subject}`
 }
 }
 
@@ -198,8 +195,18 @@ sprintChallenge(subject){
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor{
+  constructor(childAttributes){
+    super(childAttributes);
+    this.gradClassName= childAttributes.gradClassName;
+    this.favInstructor = childAttributes.favInstructor;
+  }
+standUp(channel){
+  return `${this.name} announces to ${channel}, @channel standy times!`
+}
+debugsCode(student, subject){
+  return `${this.name} debugs ${student.name}'s code on ${subject}`
+}
 }
 
 /*
